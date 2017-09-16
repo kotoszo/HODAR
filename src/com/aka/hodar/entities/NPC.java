@@ -8,6 +8,7 @@ public class NPC extends Entities {
 
     private int health = 100;
     private int damage = -10;
+    private int withSkill = 3;
 
     public NPC(Pane pane, double x, double y){
         super(pane, x, y);
@@ -28,4 +29,14 @@ public class NPC extends Entities {
 
     @Override
     int getDamage() { return this.damage; }
+
+    @Override
+    int withSkill() {
+        return withSkill;
+    }
+
+    @Override
+    String getHealthString() {
+        return Integer.toString(this.health);
+    }
 }

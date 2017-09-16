@@ -3,8 +3,7 @@ package com.aka.hodar;
 import com.aka.hodar.entities.Entities;
 import javafx.scene.image.ImageView;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Globals {
 
@@ -13,14 +12,16 @@ public class Globals {
 
     public static String chosenName;
     public static boolean isSelected;
+    public static boolean isSkill;
 
     public static List<Entities> enemies;
     public static List<Entities> heroes;
     public static Entities selectedEntity;
 
+    /*
+    Should contain 3 different images, each of them is clickable.
+     */
     public static ImageView skillset;
-
-    public static List<Entities> entitiesList;
 
     static {
         enemies = new LinkedList<>();

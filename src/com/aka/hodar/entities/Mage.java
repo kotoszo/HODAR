@@ -7,6 +7,7 @@ public class Mage extends Entities {
 
     private int health = 100;
     private int damage = -7;
+    private int withSkill = -25;
 
     public Mage(Pane pane, double x, double y){
         super(pane, x, y, "mage");
@@ -26,4 +27,14 @@ public class Mage extends Entities {
 
     @Override
     int getDamage() { return this.damage; }
+
+    @Override
+    int withSkill() {
+        return withSkill;
+    }
+
+    @Override
+    String getHealthString() {
+        return Integer.toString(this.health);
+    }
 }
