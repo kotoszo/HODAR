@@ -9,8 +9,8 @@ public class Mage extends Entities {
     private int damage = -7;
     private int withSkill = -25;
 
-    public Mage(Pane pane, double x, double y){
-        super(pane, x, y, "mage");
+    public Mage(Pane pane, double x, double y, int health){
+        super(pane, x, y, "mage", health);
         setImage(new Image("images/classes/mage/mage.png"));
 
     }
@@ -36,5 +36,20 @@ public class Mage extends Entities {
     @Override
     String getHealthString() {
         return Integer.toString(this.health);
+    }
+
+    @Override
+    int getSkill_1() {
+        return 1;
+    }
+
+    @Override
+    int getSkill_2() {
+        return 2;
+    }
+
+    @Override
+    int getSkill_3() {
+        return 3;
     }
 }

@@ -10,8 +10,8 @@ public class NPC extends Entities {
     private int damage = -10;
     private int withSkill = 3;
 
-    public NPC(Pane pane, double x, double y){
-        super(pane, x, y);
+    public NPC(Pane pane, double x, double y, int health){
+        super(pane, x, y, health);
         setImage(new Image("bot.png"));
 
     }
@@ -38,5 +38,20 @@ public class NPC extends Entities {
     @Override
     String getHealthString() {
         return Integer.toString(this.health);
+    }
+
+    @Override
+    int getSkill_1() {
+        return 1;
+    }
+
+    @Override
+    int getSkill_2() {
+        return 2;
+    }
+
+    @Override
+    int getSkill_3() {
+        return 3;
     }
 }

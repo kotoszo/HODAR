@@ -6,13 +6,12 @@ import javafx.scene.layout.Pane;
 
 public class Warrior extends Entities {
 
-    private int health;
+    private int health = 100;
     private int damage = -50;
     private int withSkill = -2;
-    private int paneIndex;
 
     public Warrior(Pane pane, double x, double y, int health){
-        super(pane, x ,y, "warrior");
+        super(pane, x ,y, "warrior", health);
         setImage(new Image("images/classes/warrior/warrior.png"));
         this.health = health;
 
@@ -35,7 +34,20 @@ public class Warrior extends Entities {
     int withSkill() { return withSkill; }
 
     @Override
-    String getHealthString() {
-        return Integer.toString(this.health);
+    String getHealthString() { return Integer.toString(this.health); }
+
+    @Override
+    int getSkill_1() {
+        return 1;
+    }
+
+    @Override
+    int getSkill_2() {
+        return 2;
+    }
+
+    @Override
+    int getSkill_3() {
+        return 3;
     }
 }
