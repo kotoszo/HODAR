@@ -34,6 +34,9 @@ public class Mage extends Entities {
     public String getHealthString() { return Integer.toString(this.health); }
 
     @Override
+    void setSkill(int skill) { this.withSkill = skill; }
+
+    @Override
     int getSkill_1() {
         return 1;
     }

@@ -8,7 +8,7 @@ public class Warrior extends Entities implements EntitiesInterface{
 
     private int health = 100;
     private int damage = -50;
-    private int withSkill = -2;
+    private int withSkill;
 
     public Warrior(Pane pane, double x, double y, int health){
         super(pane, x ,y, "warrior", health);
@@ -30,6 +30,8 @@ public class Warrior extends Entities implements EntitiesInterface{
     @Override
     public int getDamage() { return this.damage; }
 
+    @Override
+    void setSkill(int skill) { this.withSkill = skill; }
 
     public int withSkill() { return withSkill; }
 

@@ -59,11 +59,11 @@ public abstract class Entities extends ImageView implements EntitiesInterface{
         if (Globals.chosenName == null){
             setState(name);
             resetSkillStates();
-            Globals.skill_1.setOnMouseClicked(event -> { updateSkillBooleanList(0); });
+            Globals.skill_1.setOnMouseClicked(event -> { updateSkillBooleanList(0); setSkill(getSkill_1()); });
 
-            Globals.skill_2.setOnMouseClicked(event -> { updateSkillBooleanList(1); });
+            Globals.skill_2.setOnMouseClicked(event -> { updateSkillBooleanList(1); setSkill(getSkill_2()); });
 
-            Globals.skill_3.setOnMouseClicked(event -> { updateSkillBooleanList(2); });
+            Globals.skill_3.setOnMouseClicked(event -> { updateSkillBooleanList(2); setSkill(getSkill_3()); });
 
         } else {
             if (name == Globals.chosenName){
@@ -132,8 +132,10 @@ public abstract class Entities extends ImageView implements EntitiesInterface{
     private void updateSkillBooleanList(int index){
         resetSkillStates();
         Globals.isSkillList[index] = true;
+        Globals.isSkill = true;
     }
 
+    abstract void setSkill(int skillNr);
 
 
     abstract int getSkill_1();
