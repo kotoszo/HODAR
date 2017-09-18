@@ -4,7 +4,7 @@ import com.aka.hodar.Globals;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 
-public class Warrior extends Entities {
+public class Warrior extends Entities implements EntitiesInterface{
 
     private int health = 100;
     private int damage = -50;
@@ -18,7 +18,7 @@ public class Warrior extends Entities {
     }
 
     @Override
-    void printSelected() {
+    public void printSelected() {
         System.out.println("Warrior");
     }
 
@@ -30,11 +30,11 @@ public class Warrior extends Entities {
     @Override
     public int getDamage() { return this.damage; }
 
-    @Override
-    int withSkill() { return withSkill; }
+
+    public int withSkill() { return withSkill; }
 
     @Override
-    String getHealthString() { return Integer.toString(this.health); }
+    public String getHealthString() { return Integer.toString(this.health); }
 
     @Override
     int getSkill_1() {

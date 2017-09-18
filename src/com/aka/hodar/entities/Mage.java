@@ -16,7 +16,7 @@ public class Mage extends Entities {
     }
 
     @Override
-    void printSelected() {
+    public void printSelected() {
         System.out.println("Mage");
     }
 
@@ -26,17 +26,12 @@ public class Mage extends Entities {
     public int getHealth() { return health; }
 
     @Override
-    int getDamage() { return this.damage; }
+    public int getDamage() { return damage; }
+
+    public int withSkill() { return withSkill; }
 
     @Override
-    int withSkill() {
-        return withSkill;
-    }
-
-    @Override
-    String getHealthString() {
-        return Integer.toString(this.health);
-    }
+    public String getHealthString() { return Integer.toString(this.health); }
 
     @Override
     int getSkill_1() {

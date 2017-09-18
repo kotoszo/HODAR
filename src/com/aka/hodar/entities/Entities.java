@@ -8,7 +8,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
 
-public abstract class Entities extends ImageView {
+public abstract class Entities extends ImageView implements EntitiesInterface{
 
     protected Pane pane;
     StackPane stack;
@@ -133,12 +133,7 @@ public abstract class Entities extends ImageView {
         Globals.isSkillList[index] = true;
     }
 
-    abstract int getHealth();
-    abstract int getDamage();
-    abstract int withSkill();
-    abstract void printSelected();
-    abstract String getHealthString();
-    abstract void setHealth(int value);
+
 
     abstract int getSkill_1();
     abstract int getSkill_2();

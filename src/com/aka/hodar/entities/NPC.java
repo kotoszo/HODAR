@@ -4,7 +4,7 @@ import com.aka.hodar.Globals;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 
-public class NPC extends Entities {
+public class NPC extends Entities implements EntitiesInterface{
 
     private int health = 100;
     private int damage = -10;
@@ -17,7 +17,7 @@ public class NPC extends Entities {
     }
 
     @Override
-    void printSelected() {
+    public void printSelected() {
         System.out.println(getClass().getName());
         System.out.println(getHealth());
     }
@@ -28,17 +28,12 @@ public class NPC extends Entities {
     public int getHealth() { return health; }
 
     @Override
-    int getDamage() { return this.damage; }
+    public int getDamage() { return damage; }
+
+    public int withSkill() { return withSkill; }
 
     @Override
-    int withSkill() {
-        return withSkill;
-    }
-
-    @Override
-    String getHealthString() {
-        return Integer.toString(this.health);
-    }
+    public String getHealthString() { return Integer.toString(this.health); }
 
     @Override
     int getSkill_1() {
