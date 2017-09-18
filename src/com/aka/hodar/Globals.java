@@ -12,13 +12,15 @@ public class Globals {
     public static final double SCREEN_WIDTH = 1280;
     public static final double SCREEN_HEIGHT = 720;
 
+    public static final double SKILLBAR_X = 25;
+    public static final double SKILLBAR_Y = 12;
+
     public static String chosenName;
     public static boolean isSelected;
     public static boolean isSkill;
     public static boolean[] isSkillList = new boolean[3];
 
-    public static List<Entities> enemies;
-    public static List<Entities> heroes;
+    public static List<Entities> entitiesList;
     public static Entities selectedEntity;
 
     /*
@@ -27,25 +29,21 @@ public class Globals {
     public static ImageView skill_1 = new ImageView();
     public static ImageView skill_2 = new ImageView();
     public static ImageView skill_3 = new ImageView();
-    public static ImageView[] skillImageList = new ImageView[]{skill_1, skill_2, skill_3};
 
-    public static StackPane skillPane_1 = new StackPane();
-    public static StackPane skillPane_2 = new StackPane();
-    public static StackPane skillPane_3 = new StackPane();
+    public static StackPane skillPane_1;// = new StackPane();
+    public static StackPane skillPane_2;// = new StackPane();
+    public static StackPane skillPane_3;// = new StackPane();
     public static StackPane[] skillPaneList = new StackPane[]{skillPane_1, skillPane_2, skillPane_3};
 
     static {
-        enemies = new LinkedList<>();
-        heroes = new LinkedList<>();
+        entitiesList = new LinkedList<>();
     }
 
     // Images
     public static Image healthBar = new Image("healthbar.png");
 
-    public static void addHero(Entities entity){
-        heroes.add(entity);
+    public static void addEntitiy(Entities entity){
+        entitiesList.add(entity);
     }
-    public static void addEnemy(Entities entity){
-        enemies.add(entity);
-    }
+    public static void removeEntity(Entities entity){ entitiesList.remove(entity); }
 }
