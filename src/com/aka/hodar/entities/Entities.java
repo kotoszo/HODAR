@@ -16,10 +16,7 @@ public abstract class Entities extends ImageView implements EntitiesInterface{
 
     // player entity
     Entities(Pane pane, double x, double y, String name, int health){
-        this.pane = pane;
-        stack = healthBar(x, y, Integer.toString(health));
-        pane.getChildren().addAll(this, stack);
-        setX(x);setY(y);
+        setThingsUp(pane, x, y, health);
         setOnMouseClicked(event ->  {
             handleSelection(name);
         });
@@ -28,10 +25,7 @@ public abstract class Entities extends ImageView implements EntitiesInterface{
 
     // Enemy entity
     Entities(Pane pane, double x, double y, int health){
-        this.pane = pane;
-        stack = healthBar(x, y, Integer.toString(health));
-        pane.getChildren().addAll(this, stack);
-        setX(x);setY(y);
+        setThingsUp(pane, x, y, health);
         setOnMouseClicked(event -> {
             for (boolean skill: Globals.isSkillList) {
                 System.out.println(skill);
@@ -51,6 +45,13 @@ public abstract class Entities extends ImageView implements EntitiesInterface{
             }
         });
         Globals.addEnemy(this);
+    }
+
+    private void setThingsUp(Pane pane, double x, double y, int health){
+        this.pane = pane;
+        stack = healthBar(x, y, Integer.toString(health));
+        pane.getChildren().addAll(this, stack);
+        setX(x);setY(y);
     }
 
     //Friendly selection for heal/buff
