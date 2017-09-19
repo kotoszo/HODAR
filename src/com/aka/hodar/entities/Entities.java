@@ -1,9 +1,15 @@
 package com.aka.hodar.entities;
 
 import com.aka.hodar.Globals;
+import com.aka.hodar.Popup;
+import com.sun.org.apache.bcel.internal.generic.POP;
+import javafx.event.EventHandler;
+import javafx.scene.Node;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
@@ -13,7 +19,7 @@ public abstract class Entities extends ImageView implements EntitiesInterface{
 
     protected Pane pane;
     StackPane stack;
-
+    Tooltip toltip = new Tooltip();
 
     // player entity
     Entities(Pane pane, double x, double y, String name, int health){
@@ -61,21 +67,27 @@ public abstract class Entities extends ImageView implements EntitiesInterface{
         if (Globals.chosenName == null){
             setState(name);
             resetSkillStates();
-            Globals.skill_1.setOnMouseClicked(event -> { updateSkillBooleanList(0); setSkill(getSkill_1()); });
+            Globals.skill_1.setOnMouseClicked(event -> { updateSkillBooleanList(0); setSkill(getSkill_1());} );
+            Globals.skill_1.setOnMouseEntered(event -> { Popup.showSkillInfo(event, "skill 01 és akkr igen látom szemeiimel igen", Globals.SCREEN_WIDTH, Globals.SCREEN_HEIGHT-6);});
+            Globals.skill_1.setOnMouseExited(event -> { Popup.hideSkillInfo();});
 
             Globals.skill_2.setOnMouseClicked(event -> { updateSkillBooleanList(1); setSkill(getSkill_2()); });
+            Globals.skill_2.setOnMouseEntered(event -> { Popup.showSkillInfo(event, "skill 02", 0, 0); });
+            Globals.skill_2.setOnMouseExited(event -> { Popup.hideSkillInfo();});
 
             Globals.skill_3.setOnMouseClicked(event -> { updateSkillBooleanList(2); setSkill(getSkill_3()); });
+            Globals.skill_3.setOnMouseEntered(event -> { Popup.showSkillInfo(event, "skill 03", Globals.skill_1.getX(), Globals.skill_1.getY()); });
+            Globals.skill_3.setOnMouseExited(event -> { Popup.hideSkillInfo();});
 
         } else {
             if (name.equals(Globals.chosenName)){
                 setImage(new Image("images/classes/"+Globals.chosenName+"/"+Globals.chosenName+".png"));
                 resetState();
-            } else if (Globals.chosenName.equals("warrior")){
-                System.out.println("You are too dumb to do that.");
             } else {
-                setHealth(50);
-                updateHealthBar();
+                Globals.selectedEntity.setImage(new Image("images/classes/"+Globals.chosenName+"/"+Globals.chosenName+".png"));
+                resetState();
+                setState(name);
+
             }
             Globals.isSkill = false;
         }
