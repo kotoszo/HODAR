@@ -16,19 +16,17 @@ public class Game extends Pane{
         new Warrior(this, 100, 500, 100);
         new NPC(this, 1150, 500, 100);
 
-        //Globals.skill_1 = new ImageView(); Globals.skill_2 = new ImageView(); Globals.skill_3 = new ImageView();
-        int counter = 1; int skillWidth = 35;
+        int index = 0; int skillWidth = 35;
         for (StackPane stackPane: Globals.skillPaneList) {
             stackPane = new StackPane();
             stackPane.setLayoutX(Globals.SCREEN_WIDTH/2-125+skillWidth);
             stackPane.setLayoutY(Globals.SCREEN_HEIGHT-85);
-            switch (counter){
-                case 1: stackPane.getChildren().add(Globals.skill_1);break;
-                case 2: stackPane.getChildren().add(Globals.skill_2);break;
-                case 3: stackPane.getChildren().add(Globals.skill_3);break;
-            }
+            Globals.skillImages[index] = new ImageView();
+            Globals.skillImages[index].setId(Integer.toString(index));
+            stackPane.getChildren().add(Globals.skillImages[index]);
+
             getChildren().add(stackPane);
-            counter++; skillWidth += 35;
+            index++; skillWidth += 35;
         }
     }
 

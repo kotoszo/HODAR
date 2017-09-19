@@ -67,17 +67,11 @@ public abstract class Entities extends ImageView implements EntitiesInterface{
         if (Globals.chosenName == null){
             setState(name);
             resetSkillStates();
-            Globals.skill_1.setOnMouseClicked(event -> { updateSkillBooleanList(0); setSkill(getSkill_1());} );
-            Globals.skill_1.setOnMouseEntered(event -> { Popup.showSkillInfo(event, "skill 01 és akkr igen látom szemeiimel igen", Globals.SCREEN_WIDTH, Globals.SCREEN_HEIGHT-6);});
-            Globals.skill_1.setOnMouseExited(event -> { Popup.hideSkillInfo();});
-
-            Globals.skill_2.setOnMouseClicked(event -> { updateSkillBooleanList(1); setSkill(getSkill_2()); });
-            Globals.skill_2.setOnMouseEntered(event -> { Popup.showSkillInfo(event, "skill 02", 0, 0); });
-            Globals.skill_2.setOnMouseExited(event -> { Popup.hideSkillInfo();});
-
-            Globals.skill_3.setOnMouseClicked(event -> { updateSkillBooleanList(2); setSkill(getSkill_3()); });
-            Globals.skill_3.setOnMouseEntered(event -> { Popup.showSkillInfo(event, "skill 03", Globals.skill_1.getX(), Globals.skill_1.getY()); });
-            Globals.skill_3.setOnMouseExited(event -> { Popup.hideSkillInfo();});
+            for (ImageView imageV: Globals.skillImages) { // should do everything from one method and with the ID can decide what where how etc
+                imageV.setOnMouseClicked(event -> { updateSkillBooleanList(Integer.parseInt(imageV.getId())); setSkill(getSkill_1());});
+                imageV.setOnMouseEntered(event -> { Popup.showSkillInfo(event, "skill 01 és akkr igen látom szemeiimel igen", Globals.SCREEN_WIDTH, Globals.SCREEN_HEIGHT-6);});
+                imageV.setOnMouseExited(event -> { Popup.hideSkillInfo();});
+            }
 
         } else {
             if (name.equals(Globals.chosenName)){
@@ -128,9 +122,12 @@ public abstract class Entities extends ImageView implements EntitiesInterface{
     }
 
     private void setSkillImages(){
-        Globals.skill_1.setImage(new Image("images/classes/"+Globals.chosenName+"/skill_1.png"));
-        Globals.skill_2.setImage(new Image("images/classes/"+Globals.chosenName+"/skill_2.png"));
-        Globals.skill_3.setImage(new Image("images/classes/"+Globals.chosenName+"/skill_3.png"));
+        String path = "images/classes/";
+        String skill = "/skill_";
+        String png = ".png";
+        for (int i = 0; i < Globals.skillImages.length; i++) {
+            Globals.skillImages[i].setImage(new Image(path+Globals.chosenName+skill+(i+1)+png));
+        }
     }
 
     private void resetSkillStates(){
@@ -140,9 +137,9 @@ public abstract class Entities extends ImageView implements EntitiesInterface{
     }
 
     private void resetSkillImages(){
-        Globals.skill_1.setImage(new Image("empty.png"));
-        Globals.skill_2.setImage(new Image("empty.png"));
-        Globals.skill_3.setImage(new Image("empty.png"));
+        for (ImageView imageV: Globals.skillImages) {
+            imageV.setImage(new Image("empty.png"));
+        }
     }
 
     private void updateSkillBooleanList(int index){

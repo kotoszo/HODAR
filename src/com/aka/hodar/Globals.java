@@ -30,14 +30,8 @@ public class Globals {
     /*
     Should contain 3 different images, each of them is clickable.
      */
-    public static ImageView skill_1 = new ImageView();
-    public static ImageView skill_2 = new ImageView();
-    public static ImageView skill_3 = new ImageView();
     public static ImageView[] skillImages = new ImageView[3];
 
-    /*public static StackPane skillPane_1;// = new StackPane();
-    public static StackPane skillPane_2;// = new StackPane();
-    public static StackPane skillPane_3;// = new StackPane();*/
     public static StackPane[] skillPaneList = new StackPane[3];//{skillPane_1, skillPane_2, skillPane_3};
 
     static {
