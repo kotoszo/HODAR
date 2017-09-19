@@ -2,14 +2,9 @@ package com.aka.hodar.entities;
 
 import com.aka.hodar.Globals;
 import com.aka.hodar.Popup;
-import com.sun.org.apache.bcel.internal.generic.POP;
-import javafx.event.EventHandler;
-import javafx.scene.Node;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
@@ -24,11 +19,8 @@ public abstract class Entities extends ImageView implements EntitiesInterface{
     // player entity
     Entities(Pane pane, double x, double y, String name, int health){
         setThingsUp(pane, x, y, health);
-        setOnMouseClicked(event ->  {
-            handleSelection(name);
-        });
+        setOnMouseClicked(event ->  { handleSelection(name); });
         Globals.addEntitiy(this);
-        //Globals.addHero(this);
     }
 
     // Enemy entity
@@ -37,9 +29,8 @@ public abstract class Entities extends ImageView implements EntitiesInterface{
         setOnMouseClicked(event -> {
             if (Globals.isSelected){
                 int extraDamage = 0;
-                if (Globals.isSkill){
-                    extraDamage = Globals.selectedEntity.withSkill();
-                }
+                if (Globals.isSkill) extraDamage = Globals.selectedEntity.withSkill();
+
                 setHealth(Globals.selectedEntity.getDamage()+extraDamage);
                 printSelected();
                 updateHealthBar();
@@ -52,7 +43,6 @@ public abstract class Entities extends ImageView implements EntitiesInterface{
             }
         });
         Globals.addEntitiy(this);
-        //Globals.addEnemy(this);
     }
 
     private void setThingsUp(Pane pane, double x, double y, int health){
@@ -72,7 +62,6 @@ public abstract class Entities extends ImageView implements EntitiesInterface{
                 imageV.setOnMouseEntered(event -> { Popup.showSkillInfo(event, "skill 01 és akkr igen látom szemeiimel igen", Globals.SCREEN_WIDTH, Globals.SCREEN_HEIGHT-6);});
                 imageV.setOnMouseExited(event -> { Popup.hideSkillInfo();});
             }
-
         } else {
             if (name.equals(Globals.chosenName)){
                 setImage(new Image("images/classes/"+Globals.chosenName+"/"+Globals.chosenName+".png"));
@@ -81,7 +70,6 @@ public abstract class Entities extends ImageView implements EntitiesInterface{
                 Globals.selectedEntity.setImage(new Image("images/classes/"+Globals.chosenName+"/"+Globals.chosenName+".png"));
                 resetState();
                 setState(name);
-
             }
             Globals.isSkill = false;
         }
@@ -126,7 +114,7 @@ public abstract class Entities extends ImageView implements EntitiesInterface{
         String skill = "/skill_";
         String png = ".png";
         for (int i = 0; i < Globals.skillImages.length; i++) {
-            Globals.skillImages[i].setImage(new Image(path+Globals.chosenName+skill+(i+1)+png));
+            Globals.skillImages[i].setImage(new Image(path + Globals.chosenName + skill + (i+1) + png));
         }
     }
 

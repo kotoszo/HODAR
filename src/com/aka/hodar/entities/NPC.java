@@ -1,6 +1,5 @@
 package com.aka.hodar.entities;
 
-import com.aka.hodar.Globals;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 
