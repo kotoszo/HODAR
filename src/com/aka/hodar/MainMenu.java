@@ -9,28 +9,29 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
+
+import java.util.Iterator;
 
 public class MainMenu extends Pane {
 
     VBox vBox;
     boolean isClicked;
     ClassTypes selectedClass;
+    private final static double VBOX_X = 3*Globals.SCREEN_WIDTH/5+75;
+    private final static double VBOX_Y = Globals.SCREEN_HEIGHT/3;
+    private final static double TEXT_THINGS_WIDTH = 250;
 
     public MainMenu(){
         setTableBackground(new Image("bgv2.jpg"));
-
-        StackPane namePane = new StackPane();
-        namePane.setLayoutX(Globals.SCREEN_WIDTH/2-100);namePane.setLayoutY(Globals.SCREEN_HEIGHT- Globals.SCREEN_HEIGHT/4);
-        TextField nameField = new TextField();
-        nameField.setText("Name of your character");
-        namePane.getChildren().add(nameField);
-
-        getChildren().addAll(namePane);
+        setTextField();
 
         double xCoordinates = 100;
         double yCoordinates = Globals.SCREEN_HEIGHT/2-Globals.warriorImage.getHeight()/2;
+
+
+
         for (ClassTypes classType: ClassTypes.values()) {
+            if (classType.equals(ClassTypes.PIRATE)) break;
             ImageView charImage = new ImageView();
             StackPane imageStack = new StackPane();
 
@@ -49,23 +50,35 @@ public class MainMenu extends Pane {
             imageStack.getChildren().addAll(charImage);
             getChildren().addAll(imageStack);
         }
+        setButton();
+    }
 
+    private void setButton(){
         Button btn = new Button();
         btn.setText("Play");
+        btn.setLayoutX(VBOX_X+TEXT_THINGS_WIDTH/2-25);
+        btn.setLayoutY(Globals.SCREEN_HEIGHT- Globals.SCREEN_HEIGHT/3);
         btn.setOnMouseClicked(event -> {
             System.out.println(selectedClass);
             if (selectedClass != null){
-                System.out.println(getChildren());
                 Game game = new Game(selectedClass);
                 Globals.primaryStage.setScene(new Scene(game, Globals.SCREEN_WIDTH, Globals.SCREEN_HEIGHT));
                 Globals.primaryStage.show();
             }
 
         });
-        btn.setLayoutX(Globals.SCREEN_WIDTH/2-nameField.getWidth());btn.setLayoutY(Globals.SCREEN_HEIGHT- Globals.SCREEN_HEIGHT/4+35);
         getChildren().add(btn);
+    }
 
+    private void setTextField(){
+        StackPane namePane = new StackPane();
+        namePane.setPrefWidth(TEXT_THINGS_WIDTH);
+        namePane.setLayoutX(VBOX_X);namePane.setLayoutY(Globals.SCREEN_HEIGHT- Globals.SCREEN_HEIGHT/3-50);
+        TextField nameField = new TextField();
+        nameField.setText("Name of your character");
+        namePane.getChildren().add(nameField);
 
+        getChildren().addAll(namePane);
     }
 
     private VBox setVbox(ClassTypes classType){
@@ -73,11 +86,11 @@ public class MainMenu extends Pane {
                 classType.getClassName(), classType.getStory(), classType.getAgility(),
                 classType.getIntellect(), classType.getStrength(), classType.getHealth());
         vBox = new VBox();
+        vBox.setPrefWidth(TEXT_THINGS_WIDTH);
         Text text = new Text(infoBuilder);
-        text.getFont();
         vBox.getChildren().add(text);
         vBox.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
-        vBox.setLayoutX(3*Globals.SCREEN_WIDTH/5+75);vBox.setLayoutY(Globals.SCREEN_HEIGHT/3);
+        vBox.setLayoutX(VBOX_X);vBox.setLayoutY(VBOX_Y);
         return vBox;
     }
 

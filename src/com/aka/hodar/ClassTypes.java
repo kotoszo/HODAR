@@ -7,25 +7,28 @@ import java.util.Map;
 
 public enum ClassTypes {
 
-    WARRIOR("Warrior", 3, 1, 5, 125, "Warriors are good in close-combat.\n9/10 warriors recommend it!", new Image("images/classes/warrior/warrior.png")),
-    MAGE("Mage", 3, 5, 1, 150, "Mages are well known magic users.\nThey can deal big amount of damage.", new Image("images/classes/mage/mage.png"));
+    WARRIOR("Warrior", 3, 1, 5, 125, "Warriors are good in close-combat.\n9/10 warriors recommend it!", new Image("images/classes/warrior/warrior.png"), Skills.WARRIOR),
+    MAGE("Mage", 3, 5, 1, 150, "Mages are well known magic users.\nThey can deal big amount of damage.", new Image("images/classes/mage/mage.png"), Skills.MAGE),
+    PIRATE("Pirate", 4, 1, 4, 200, null, new Image("images/classes/pirate/pirate.png"), null);
 
-    private String className;
-    private int agility;
-    private int intellect;
-    private int strength;
     private int health;
-    private String story;
     private Image image;
+    private int agility;
+    private String story;
+    private int strength;
+    private int intellect;
+    private String className;
+    private Skills skills;
 
-    ClassTypes(String className, int agility ,int intellect,int strength,int health, String story, Image image) {
-        this.className = className;
-        this.agility = agility;
-        this.intellect = intellect;
-        this.strength = strength;
-        this.health = health;
+    ClassTypes(String className, int agility ,int intellect,int strength,int health, String story, Image image, Skills skills) {
         this.story = story;
         this.image = image;
+        this.health = health;
+        this.skills = skills;
+        this.agility = agility;
+        this.strength = strength;
+        this.intellect = intellect;
+        this.className = className;
     }
 
     public String getClassName() {
@@ -44,16 +47,36 @@ public enum ClassTypes {
 
     public Image getImage() { return image; }
 
-    public Map<String, String> getMap(){
-        Map<String, String> map = new HashMap();
-        map.put("Classname", className);
-        map.put("Agility", Integer.toString(agility));
-        map.put("Intellect", Integer.toString(intellect));
-        map.put("Strength", Integer.toString(strength));
-        map.put("Health", Integer.toString(health));
-        return map;
+    public Skills getSkills() { return skills; }
+
+    public int getSkillDmg(int index) {
+        int dmg = 0;
+        switch (index){
+            case 0:
+                dmg = skills.getSkill01Dmg();break;
+            case 1:
+                dmg = skills.getSkill02Dmg();break;
+            case 2:
+                dmg = skills.getSkill03Dmg();break;
+        }
+        System.out.println(dmg);
+        return dmg;
+    }
+    public String getSkillName(String index){
+        return getSkillName(Integer.parseInt(index));
     }
 
-    //, ROGUE("rogue"), PALADIN("paladin"), PRIEST("priest"), WARLOCK("warlock");
+    public String getSkillName(int index) {
+        String name = "";
+        switch (index){
+            case 0:
+                name = skills.getSkill01Name();break;
+            case 1:
+                name = skills.getSkill02Name();break;
+            case 2:
+                name = skills.getSkill03Name();break;
+        }
+        return name;
+    }
 
 }

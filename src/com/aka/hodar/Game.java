@@ -17,7 +17,7 @@ public class Game extends Pane{
         setTableBackground(new Image("bgv2.jpg"));
         addHero(selectedClass);
 
-        new NPC(this, Globals.SCREEN_WIDTH - Globals.pirateImage.getWidth(), 340, 100);
+        new NPC(this, Globals.SCREEN_WIDTH - Globals.pirateImage.getWidth(), 340);
 
         setSkillImages();
 
@@ -40,9 +40,9 @@ public class Game extends Pane{
     void addHero(ClassTypes selectedClass){
         switch (selectedClass){
             case MAGE:
-                new Mage(this, 0, 340, selectedClass.getHealth());break;
+                new Mage(this, 0, 340, selectedClass);break;
             case WARRIOR:
-                new Warrior(this, 0, 340, selectedClass.getHealth());break;
+                new Warrior(this, 0, 340, selectedClass);break;
         }
     }
 
