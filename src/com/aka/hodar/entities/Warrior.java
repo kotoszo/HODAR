@@ -13,7 +13,6 @@ public class Warrior extends Entities implements EntitiesInterface{
         super(pane, x ,y, "warrior", health);
         setImage(new Image("images/classes/warrior/warrior.png"));
         this.health = health;
-
     }
 
     @Override
@@ -23,11 +22,11 @@ public class Warrior extends Entities implements EntitiesInterface{
 
     public void setHealth(int value) { this.health += value; }
 
-    @Override
+    /*@Override
     public int getHealth() { return this.health; }
 
     @Override
-    public int getDamage() { return this.damage; }
+    public int getDamage() { return this.damage; }*/
 
     @Override
     void setSkill(int skill) { this.withSkill = skill; }

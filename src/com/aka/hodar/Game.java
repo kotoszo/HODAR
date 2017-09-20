@@ -12,9 +12,9 @@ public class Game extends Pane{
     public Game(){
         setTableBackground(new Image("bgv2.jpg"));
 
-        new Mage(this, 0, 500, 100);
-        new Warrior(this, 100, 500, 100);
-        new NPC(this, 1150, 500, 100);
+        new Mage(this, 0, 340, 100);
+        new Warrior(this, 180, 340, 100);
+        new NPC(this, Globals.SCREEN_WIDTH - Globals.pirateImage.getWidth(), 340, 100);
 
         int index = 0; int skillWidth = 35;
         for (StackPane stackPane: Globals.skillPaneList) {
@@ -29,7 +29,6 @@ public class Game extends Pane{
             index++; skillWidth += 35;
         }
     }
-
 
     void setTableBackground(Image tableBackground){
         setBackground(new Background(new BackgroundImage(tableBackground,

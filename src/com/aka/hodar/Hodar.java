@@ -16,6 +16,7 @@ public class Hodar extends Application{
          */
         Globals.primaryStage = primaryStage;
         Game game = new Game();
+        //MainMenu game = new MainMenu();
         Globals.primaryStage.setScene(new Scene(game, Globals.SCREEN_WIDTH, Globals.SCREEN_HEIGHT));
 
         Globals.primaryStage.show();

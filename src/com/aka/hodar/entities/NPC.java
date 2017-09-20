@@ -18,16 +18,16 @@ public class NPC extends Entities implements EntitiesInterface{
     @Override
     public void printSelected() {
         System.out.println(getClass().getName());
-        System.out.println(getHealth());
+        //System.out.println(getHealth());
     }
 
     public void setHealth(int value) { this.health += value; }
 
-    @Override
+    /*@Override
     public int getHealth() { return health; }
 
     @Override
-    public int getDamage() { return damage; }
+    public int getDamage() { return damage; }*/
 
     public int withSkill() { return withSkill; }
 

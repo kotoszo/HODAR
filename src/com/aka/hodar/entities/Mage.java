@@ -22,11 +22,11 @@ public class Mage extends Entities {
 
     public void setHealth(int value) { this.health += value; }
 
-    @Override
+    /*@Override
     public int getHealth() { return health; }
 
     @Override
-    public int getDamage() { return damage; }
+    public int getDamage() { return damage; }*/
 
     public int withSkill() { return withSkill; }
 

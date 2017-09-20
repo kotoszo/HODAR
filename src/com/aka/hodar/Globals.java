@@ -27,6 +27,10 @@ public class Globals {
     public static Stage primaryStage;
     public static Tooltip skillInfo;
 
+    public static final Image pirateImage = new Image("bot.png");
+    public static final Image warriorImage = new Image("images/classes/warrior/warrior.png");
+    public static final Image mageImage = new Image("images/classes/mage/mage.png");
+
     /*
     Should contain 3 different images, each of them is clickable.
      */
