@@ -11,11 +11,18 @@ public class Game extends Pane{
 
     public Game(){
         setTableBackground(new Image("bgv2.jpg"));
+    }
 
-        new Mage(this, 0, 340, 100);
-        new Warrior(this, 180, 340, 100);
+    public Game(ClassTypes selectedClass){
+        setTableBackground(new Image("bgv2.jpg"));
+        addHero(selectedClass);
+
         new NPC(this, Globals.SCREEN_WIDTH - Globals.pirateImage.getWidth(), 340, 100);
 
+        setSkillImages();
+
+    }
+    void setSkillImages(){
         int index = 0; int skillWidth = 35;
         for (StackPane stackPane: Globals.skillPaneList) {
             stackPane = new StackPane();
@@ -27,6 +34,15 @@ public class Game extends Pane{
 
             getChildren().add(stackPane);
             index++; skillWidth += 35;
+        }
+    }
+
+    void addHero(ClassTypes selectedClass){
+        switch (selectedClass){
+            case MAGE:
+                new Mage(this, 0, 340, selectedClass.getHealth());break;
+            case WARRIOR:
+                new Warrior(this, 0, 340, selectedClass.getHealth());break;
         }
     }
 
