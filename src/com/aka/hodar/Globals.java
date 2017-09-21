@@ -14,6 +14,10 @@ public class Globals {
     public static final double SCREEN_WIDTH = 1280;
     public static final double SCREEN_HEIGHT = 720;
 
+    public static final double PLAYER_X = 0;
+    //public static final double NPC_X = SCREEN_WIDTH-pirateImage.getWidth();
+    public static final double COMMON_Y = 275;
+
     public static final double SKILLBAR_X = 25;
     public static final double SKILLBAR_Y = 12;
 

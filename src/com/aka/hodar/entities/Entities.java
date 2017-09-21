@@ -67,7 +67,7 @@ public abstract class Entities extends ImageView implements EntitiesInterface{
             System.out.println();
             for (ImageView imageV: Globals.skillImages) { // should do everything from one method and with the ID can decide what where how etc
                 imageV.setOnMouseClicked(event -> { updateSkillBooleanList(imageV.getId()); setSkill(imageV.getId()); });
-                imageV.setOnMouseEntered(event -> { Popup.showSkillInfo(event, classType.getSkillName(imageV.getId()),
+                imageV.setOnMouseEntered(event -> { System.out.println("X "+event.getScreenX()+" Y "+event.getScreenY()); Popup.showSkillInfo(event, classType.getSkillName(imageV.getId()),
                         Globals.SCREEN_WIDTH, Globals.SCREEN_HEIGHT-6);});
                 imageV.setOnMouseExited(event -> { Popup.hideSkillInfo();});
             }

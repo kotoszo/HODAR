@@ -22,7 +22,7 @@ public class MainMenu extends Pane {
     private final static double TEXT_THINGS_WIDTH = 250;
 
     public MainMenu(){
-        setTableBackground(new Image("bgv2.jpg"));
+        setTableBackground(Images.BG_BASIC.getImage());
         setTextField();
 
         double xCoordinates = 100;

@@ -1,5 +1,6 @@
 package com.aka.hodar;
 
+import com.aka.hodar.entities.Entities;
 import com.aka.hodar.entities.Mage;
 import com.aka.hodar.entities.NPC;
 import com.aka.hodar.entities.Warrior;
@@ -9,15 +10,11 @@ import javafx.scene.layout.*;
 
 public class Game extends Pane{
 
-    public Game(){
-        setTableBackground(new Image("bgv2.jpg"));
-    }
-
     public Game(ClassTypes selectedClass){
-        setTableBackground(new Image("bgv2.jpg"));
+        setTableBackground(Images.BG_BASIC.getImage());
         addHero(selectedClass);
 
-        new NPC(this, Globals.SCREEN_WIDTH - Globals.pirateImage.getWidth(), 340);
+        new NPC(this, Globals.SCREEN_WIDTH - Globals.pirateImage.getWidth(), Globals.COMMON_Y);
 
         setSkillImages();
 
@@ -40,9 +37,9 @@ public class Game extends Pane{
     void addHero(ClassTypes selectedClass){
         switch (selectedClass){
             case MAGE:
-                new Mage(this, 0, 340, selectedClass);break;
+                new Mage(this, Globals.PLAYER_X, Globals.COMMON_Y, selectedClass);break;
             case WARRIOR:
-                new Warrior(this, 0, 340, selectedClass);break;
+                new Warrior(this,  Globals.PLAYER_X, Globals.COMMON_Y, selectedClass);break;
         }
     }
 

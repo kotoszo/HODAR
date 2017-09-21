@@ -1,14 +1,14 @@
 package com.aka.hodar.entities;
 
 import com.aka.hodar.ClassTypes;
-import javafx.scene.image.Image;
+import com.aka.hodar.Images;
 import javafx.scene.layout.Pane;
 
 public class Mage extends Entities {
 
     public Mage(Pane pane, double x, double y, ClassTypes classType){
         super(pane, x, y, classType);
-        setImage(new Image("images/classes/mage/mage.png"));
+        setImage(Images.MAGE.getImage());
 
     }
 

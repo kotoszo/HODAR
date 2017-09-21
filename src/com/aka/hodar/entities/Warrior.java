@@ -1,7 +1,7 @@
 package com.aka.hodar.entities;
 
 import com.aka.hodar.ClassTypes;
-import javafx.scene.image.Image;
+import com.aka.hodar.Images;
 import javafx.scene.layout.Pane;
 
 public class Warrior extends Entities implements EntitiesInterface{
@@ -10,7 +10,7 @@ public class Warrior extends Entities implements EntitiesInterface{
 
     public Warrior(Pane pane, double x, double y, ClassTypes classType){
         super(pane, x ,y, classType);
-        setImage(new Image("images/classes/warrior/warrior.png"));
+        setImage(Images.WARRIOR.getImage());
         this.health = health;
     }
 
