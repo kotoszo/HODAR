@@ -33,90 +33,40 @@ public class MainMenu extends Pane {
     public MainMenu(){
         setTableBackground(Images.BG_BASIC.getImage());
         setTextField();
-        int index = 0;
 
-        //double xCoordinates = Globals.SCREEN_WIDTH/2-ClassTypes.values()[index].getImage().getWidth();
-        //double yCoordinates = Globals.SCREEN_HEIGHT/2-ClassTypes.values()[index].getImage().getWidth()/2;
-
-        ImageView previousChar = new ImageView();
-        previousChar.setImage(Images.LEFT_ARROW.getImage());
-        previousChar.setLayoutX(xCoordinates-Images.LEFT_ARROW.getImage().getWidth());
-        previousChar.setLayoutY(Globals.SCREEN_HEIGHT/2-Images.LEFT_ARROW.getImage().getWidth()/2);
+        ImageView previousChar = arrowMaker(Images.LEFT_ARROW);
         previousChar.setOnMouseClicked(event -> {
             System.out.println("BALRA");
             getChildren().remove(ClassTypes.values()[index]);
-            if (MainMenu.index-1 < 0){
-                MainMenu.index = ClassTypes.values().length;
-            }
+            if (MainMenu.index-1 < 0) MainMenu.index = ClassTypes.values().length;
             selectionScreen(MainMenu.index-=1);
         });
         getChildren().add(previousChar);
 
-
-        //StackPane previousButtonStack = new StackPane();
-        ImageView nextChar = new ImageView();
-        nextChar.setImage(Images.RIGHT_ARROW.getImage());
-        nextChar.setLayoutX(xCoordinates+ClassTypes.values()[index].getImage().getWidth());
-        nextChar.setLayoutY(Globals.SCREEN_HEIGHT/2-Images.RIGHT_ARROW.getImage().getWidth()/2);
+        ImageView nextChar = arrowMaker(Images.RIGHT_ARROW);
         nextChar.setOnMouseClicked(event -> {
             System.out.println("JOBBRA");
             getChildren().remove(ClassTypes.values()[index]);
-            if (MainMenu.index+1 == ClassTypes.values().length){
-                MainMenu.index = 0;
-            }
+            if (MainMenu.index+1 == ClassTypes.values().length) MainMenu.index = -1;
             selectionScreen(MainMenu.index+=1);
         });
         getChildren().add(nextChar);
 
-
-       // StackPane nextButtonStack = new StackPane();
-
-
         selectionScreen(index);
-
-
-
         setButton();
+    }
 
-
-
-        /*charImage.setOnMouseClicked(event -> {
-            if (isClicked) getChildren().remove(vBox);
-            setVbox(ClassTypes.values()[index]);
-            selectedClass = ClassTypes.values()[index];
-            getChildren().add(vBox);
-            isClicked = !isClicked;
-        });*/
-
-        /*xCoordinates += Globals.warriorImage.getWidth();
-        imageStack.getChildren().addAll(charImage);
-        getChildren().addAll(imageStack);*/
-
-        /*for (ClassTypes classType: ClassTypes.values()) {
-            if (classType.equals(ClassTypes.PIRATE)) break;
-            ImageView charImage = new ImageView();
-            StackPane imageStack = new StackPane();
-
-            charImage.setScaleX(0.75);charImage.setScaleY(0.75);
-            imageStack.setLayoutX(xCoordinates);imageStack.setLayoutY(yCoordinates);
-
-            charImage.setImage(classType.getImage());
-            charImage.setOnMouseClicked(event -> {
-                if (isClicked) getChildren().remove(vBox);
-                setVbox(classType);
-                selectedClass = classType;
-                getChildren().add(vBox);
-                isClicked = !isClicked;
-            });
-            xCoordinates += Globals.warriorImage.getWidth();
-            imageStack.getChildren().addAll(charImage);
-            getChildren().addAll(imageStack);
-        }*/
+    private ImageView arrowMaker(Images arrow){
+        ImageView nextChar = new ImageView();
+        nextChar.setImage(arrow.getImage());
+        if (arrow.equals(Images.RIGHT_ARROW)) nextChar.setLayoutX(xCoordinates+ClassTypes.values()[index].getImage().getWidth());
+        else nextChar.setLayoutX(xCoordinates-arrow.getImage().getWidth());
+        nextChar.setLayoutY(Globals.SCREEN_HEIGHT/2-arrow.getImage().getWidth()/2);
+        return nextChar;
     }
 
     private void selectionScreen(int index){
         System.out.println(index);
-        //ImageView charImage = new ImageView();
         StackPane imageStack = new StackPane();
 
         charImage.setScaleX(0.75);charImage.setScaleY(0.75);
@@ -126,7 +76,6 @@ public class MainMenu extends Pane {
         setVbox(ClassTypes.values()[index]);
         selectedClass = ClassTypes.values()[index];
         getChildren().add(vBox);
-        //xCoordinates += Globals.warriorImage.getWidth();
         imageStack.getChildren().addAll(charImage);
         getChildren().addAll(imageStack);
     }
@@ -142,7 +91,6 @@ public class MainMenu extends Pane {
                 Globals.primaryStage.setScene(new Scene(game, Globals.SCREEN_WIDTH, Globals.SCREEN_HEIGHT));
                 Globals.primaryStage.show();
             }
-
         });
         getChildren().add(btn);
     }
