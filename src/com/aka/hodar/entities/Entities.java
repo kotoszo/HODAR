@@ -3,13 +3,11 @@ package com.aka.hodar.entities;
 import com.aka.hodar.ClassTypes;
 import com.aka.hodar.Globals;
 import com.aka.hodar.Popup;
-import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-import org.omg.CORBA.INTERNAL;
 
 
 public abstract class Entities extends ImageView implements EntitiesInterface{
@@ -35,13 +33,10 @@ public abstract class Entities extends ImageView implements EntitiesInterface{
             if (Globals.isSelected){
                 if (Globals.isSkill){
                     setHealth(skillDamage);
-                    printSelected();
                     updateHealthBar();
                     Globals.isSkill = false;
                     if (getHealth() <= 0){ removeEntity(); }
-                    System.out.println(Globals.entitiesList);
                 }
-
             } else {
                 System.out.println("First, select one of your characters");
             }
@@ -58,28 +53,22 @@ public abstract class Entities extends ImageView implements EntitiesInterface{
         setX(x);setY(y);
     }
 
-    //Friendly selection for heal/buff
+    // self and friendly selection for heal/buff
     private void handleSelection(String name){
-        if (Globals.chosenName == null){
-            System.out.println("HELLO NEM NULL VOLT");
+        if (Globals.chosenEntity == null){
             setState(name);
             resetSkillStates();
-            System.out.println();
-            for (ImageView imageV: Globals.skillImages) { // should do everything from one method and with the ID can decide what where how etc
-                imageV.setOnMouseClicked(event -> { updateSkillBooleanList(imageV.getId()); setSkill(imageV.getId()); });
-                imageV.setOnMouseEntered(event -> { System.out.println("X "+event.getScreenX()+" Y "+event.getScreenY()); Popup.showSkillInfo(event, classType.getSkillName(imageV.getId()),
-                        Globals.SCREEN_WIDTH, Globals.SCREEN_HEIGHT-6);});
-                imageV.setOnMouseExited(event -> { Popup.hideSkillInfo();});
-            }
+            showSkillImages();
         } else {
-            if (name.equals(Globals.chosenName)){
-                //setImage(new Image("images/classes/"+Globals.chosenName+"/"+Globals.chosenName+".png"));
+            if (name.equals(Globals.chosenEntity.getClassName())){
                 setScaleX(1);setScaleY(1);
                 resetState();
             } else {
-                Globals.selectedEntity.setImage(new Image("images/classes/"+Globals.chosenName+"/"+Globals.chosenName+".png"));
+                Globals.selectedEntity.setScaleX(1);Globals.selectedEntity.setScaleY(1);
+                Globals.selectedEntity.setImage(Globals.chosenEntity.getImage());
                 resetState();
                 setState(name);
+                showSkillImages();
             }
             Globals.isSkill = false;
         }
@@ -99,16 +88,17 @@ public abstract class Entities extends ImageView implements EntitiesInterface{
     private void setState(String name){
         Globals.isSelected = true;
         Globals.selectedEntity = this;
-        Globals.chosenName = name;
+        Globals.chosenEntity = Globals.selectedEntity.getClassType();
         setScaleX(1.25);setScaleY(1.25);
         setSkillImages();
     }
 
     //resets the state
     private void resetState(){
-        Globals.chosenName = null;
+        Globals.chosenEntity = null;
         Globals.isSelected = false;
         Globals.selectedEntity = null;
+        Globals.chosenEntity = null;
         resetSkillImages();
         resetSkillStates();
     }
@@ -132,6 +122,15 @@ public abstract class Entities extends ImageView implements EntitiesInterface{
         }
     }
 
+    private void showSkillImages(){
+        for (ImageView imageV: Globals.skillImages) { // should do everything from one method and with the ID can decide what where how etc
+            imageV.setOnMouseClicked(event -> { updateSkillBooleanList(imageV.getId()); setSkill(imageV.getId()); });
+            imageV.setOnMouseEntered(event -> { Popup.showSkillInfo(event, classType.getSkillName(imageV.getId()),
+                    Globals.SCREEN_WIDTH, Globals.SCREEN_HEIGHT-6);});
+            imageV.setOnMouseExited(event -> { Popup.hideSkillInfo();});
+        }
+    }
+
     private void resetSkillStates(){
         for (int i = 0; i < Globals.isSkillList.length; i++) {
             Globals.isSkillList[i] = false;
@@ -142,9 +141,6 @@ public abstract class Entities extends ImageView implements EntitiesInterface{
         resetSkillStates();
         Globals.isSkillList[Integer.parseInt(index)] = true;
         Globals.isSkill = true;
-        for (boolean bol: Globals.isSkillList) {
-            System.out.println(bol);
-        }
     }
 
     private void removeEntity(){
@@ -154,11 +150,15 @@ public abstract class Entities extends ImageView implements EntitiesInterface{
     }
 
     private int getHealth() { return health; }
-    public void setHealth(int damage) { System.out.println(damage); this.health -= damage; }
+    public void setHealth(int damage) { this.health -= damage; }
 
     public int getDamage() { return damage; }
 
     void setSkill(String skillNr){
         skillDamage = classType.getSkillDmg(Integer.parseInt(skillNr));
+    }
+
+    public ClassTypes getClassType() {
+        return classType;
     }
 }

@@ -59,7 +59,6 @@ public class MainMenu extends Pane {
         btn.setLayoutX(VBOX_X+TEXT_THINGS_WIDTH/2-25);
         btn.setLayoutY(Globals.SCREEN_HEIGHT- Globals.SCREEN_HEIGHT/3);
         btn.setOnMouseClicked(event -> {
-            System.out.println(selectedClass);
             if (selectedClass != null){
                 Game game = new Game(selectedClass);
                 Globals.primaryStage.setScene(new Scene(game, Globals.SCREEN_WIDTH, Globals.SCREEN_HEIGHT));

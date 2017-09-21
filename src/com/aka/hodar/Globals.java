@@ -21,7 +21,7 @@ public class Globals {
     public static final double SKILLBAR_X = 25;
     public static final double SKILLBAR_Y = 12;
 
-    public static String chosenName;
+    public static ClassTypes chosenEntity;
     public static boolean isSelected;
     public static boolean isSkill;
     public static boolean[] isSkillList = new boolean[3];

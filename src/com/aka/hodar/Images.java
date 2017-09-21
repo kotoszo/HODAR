@@ -25,7 +25,14 @@ public enum Images {
     TROLL3(new Image("images/enemies/troll/3.png")),
     ZOOMBIE1(new Image("images/enemies/zombie/1.png")),
     ZOOMBIE2(new Image("images/enemies/zombie/2.png")),
-    ZOOMBIE3(new Image("images/enemies/zombie/3.png"));
+    ZOOMBIE3(new Image("images/enemies/zombie/3.png")),
+
+    // Skills
+    BASIC_ATTACK(new Image("images/classes/warrior/skill_1.png")),
+    MORTAL_STRIKE(new Image("images/classes/warrior/skill_2.png")),
+    HUNDRED_BLADES(new Image("images/classes/warrior/skill_3.png")),
+    ARCANE_BOLT(new Image("images/classes/mage/skill_2.png")),
+    ARCANE_CANNON(new Image("images/classes/mage/skill_3.png"));
 
     private Image image;
 

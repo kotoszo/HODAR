@@ -3,10 +3,10 @@ package com.aka.hodar;
 import javafx.scene.image.Image;
 
 public enum Skills {
-    WARRIOR("Basic Attack", 5 ,"Mortal Strike", 10, "Hundred Blades", 20, new Image("images/classes/warrior/skill_1.png"),
-            new Image("images/classes/warrior/skill_2.png"), new Image("images/classes/warrior/skill_3.png")),
-    MAGE("Basic Attack", 2, "Arcane Bolt", 15, "Arcane Cannon", 25, new Image("images/classes/mage/skill_1.png"),
-            new Image("images/classes/mage/skill_2.png"), new Image("images/classes/mage/skill_3.png"));
+    WARRIOR("Basic Attack", 5 ,"Mortal Strike", 10, "Hundred Blades", 20, Images.BASIC_ATTACK.getImage(),
+            Images.MORTAL_STRIKE.getImage(), Images.HUNDRED_BLADES.getImage()),
+    MAGE("Basic Attack", 2, "Arcane Bolt", 15, "Arcane Cannon", 25, Images.BASIC_ATTACK.getImage(),
+            Images.ARCANE_BOLT.getImage(), Images.ARCANE_CANNON.getImage());
 
     private int skill01Dmg;
     private int skill02Dmg;

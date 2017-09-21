@@ -6,12 +6,9 @@ import javafx.scene.layout.Pane;
 
 public class Warrior extends Entities implements EntitiesInterface{
 
-    private int health = 100;
-
     public Warrior(Pane pane, double x, double y, ClassTypes classType){
         super(pane, x ,y, classType);
         setImage(Images.WARRIOR.getImage());
-        this.health = health;
     }
 
     @Override
