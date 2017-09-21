@@ -32,7 +32,11 @@ public enum Images {
     MORTAL_STRIKE(new Image("images/classes/warrior/skill_2.png")),
     HUNDRED_BLADES(new Image("images/classes/warrior/skill_3.png")),
     ARCANE_BOLT(new Image("images/classes/mage/skill_2.png")),
-    ARCANE_CANNON(new Image("images/classes/mage/skill_3.png"));
+    ARCANE_CANNON(new Image("images/classes/mage/skill_3.png")),
+
+    // MainMenu
+    LEFT_ARROW(new Image("images/left_arrow.png")),
+    RIGHT_ARROW(new Image("images/right_arrow.png"));
 
     private Image image;
 
