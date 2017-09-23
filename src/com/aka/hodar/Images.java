@@ -3,6 +3,10 @@ package com.aka.hodar;
 import javafx.scene.image.Image;
 
 public enum Images {
+
+    // MISC
+    EMPTY(new Image("empty.png")),
+    HEALTHBAR(new Image("healthbar.png")),
     //  Backgrounds 1280*720
     BG_BASIC(new Image("images/bg/basic.jpg")),
 
@@ -33,6 +37,8 @@ public enum Images {
     HUNDRED_BLADES(new Image("images/classes/warrior/skill_3.png")),
     ARCANE_BOLT(new Image("images/classes/mage/skill_2.png")),
     ARCANE_CANNON(new Image("images/classes/mage/skill_3.png")),
+//    PRIZE_CUT(new Image("")),
+   // JACKPOT(new Image("")),
 
     // MainMenu
     LEFT_ARROW(new Image("images/left_arrow.png")),

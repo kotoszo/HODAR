@@ -1,25 +1,18 @@
 package com.aka.hodar;
 
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 public class MainMenu extends Pane {
 
     VBox vBox;
-    boolean isClicked;
     ClassTypes selectedClass;
     private final static double VBOX_X = 3*Globals.SCREEN_WIDTH/5+75;
     private final static double VBOX_Y = Globals.SCREEN_HEIGHT/3;
@@ -36,7 +29,6 @@ public class MainMenu extends Pane {
 
         ImageView previousChar = arrowMaker(Images.LEFT_ARROW);
         previousChar.setOnMouseClicked(event -> {
-            System.out.println("BALRA");
             getChildren().remove(ClassTypes.values()[index]);
             if (MainMenu.index-1 < 0) MainMenu.index = ClassTypes.values().length;
             selectionScreen(MainMenu.index-=1);
@@ -45,7 +37,6 @@ public class MainMenu extends Pane {
 
         ImageView nextChar = arrowMaker(Images.RIGHT_ARROW);
         nextChar.setOnMouseClicked(event -> {
-            System.out.println("JOBBRA");
             getChildren().remove(ClassTypes.values()[index]);
             if (MainMenu.index+1 == ClassTypes.values().length) MainMenu.index = -1;
             selectionScreen(MainMenu.index+=1);
@@ -57,16 +48,16 @@ public class MainMenu extends Pane {
     }
 
     private ImageView arrowMaker(Images arrow){
-        ImageView nextChar = new ImageView();
-        nextChar.setImage(arrow.getImage());
-        if (arrow.equals(Images.RIGHT_ARROW)) nextChar.setLayoutX(xCoordinates+ClassTypes.values()[index].getImage().getWidth());
-        else nextChar.setLayoutX(xCoordinates-arrow.getImage().getWidth());
-        nextChar.setLayoutY(Globals.SCREEN_HEIGHT/2-arrow.getImage().getWidth()/2);
-        return nextChar;
+        ImageView imageView = new ImageView();
+        imageView.setImage(arrow.getImage());
+        if (arrow.equals(Images.RIGHT_ARROW)) imageView.setLayoutX(xCoordinates+ClassTypes.values()[index].getImage().getWidth());
+        else imageView.setLayoutX(xCoordinates-arrow.getImage().getWidth());
+        imageView.setLayoutY(Globals.SCREEN_HEIGHT/2-arrow.getImage().getWidth()/2);
+        return imageView;
     }
 
     private void selectionScreen(int index){
-        System.out.println(index);
+        //System.out.println(index);
         StackPane imageStack = new StackPane();
 
         charImage.setScaleX(0.75);charImage.setScaleY(0.75);
@@ -81,29 +72,29 @@ public class MainMenu extends Pane {
     }
 
     private void setButton(){
-        Button btn = new Button();
-        btn.setText("Play");
-        btn.setLayoutX(VBOX_X+TEXT_THINGS_WIDTH/2-25);
-        btn.setLayoutY(Globals.SCREEN_HEIGHT- Globals.SCREEN_HEIGHT/3);
-        btn.setOnMouseClicked(event -> {
+        Button button = new Button();
+        button.setText("Play");
+        button.setLayoutX(VBOX_X+TEXT_THINGS_WIDTH/2-25);
+        button.setLayoutY(Globals.SCREEN_HEIGHT- Globals.SCREEN_HEIGHT/3);
+        button.setOnMouseClicked(event -> {
             if (selectedClass != null){
                 Game game = new Game(selectedClass);
                 Globals.primaryStage.setScene(new Scene(game, Globals.SCREEN_WIDTH, Globals.SCREEN_HEIGHT));
                 Globals.primaryStage.show();
             }
         });
-        getChildren().add(btn);
+        getChildren().add(button);
     }
 
     private void setTextField(){
-        StackPane namePane = new StackPane();
-        namePane.setPrefWidth(TEXT_THINGS_WIDTH);
-        namePane.setLayoutX(VBOX_X);namePane.setLayoutY(Globals.SCREEN_HEIGHT- Globals.SCREEN_HEIGHT/3-50);
-        TextField nameField = new TextField();
-        nameField.setText("Name of your character");
-        namePane.getChildren().add(nameField);
+        StackPane stackPane = new StackPane();
+        stackPane.setPrefWidth(TEXT_THINGS_WIDTH);
+        stackPane.setLayoutX(VBOX_X);stackPane.setLayoutY(Globals.SCREEN_HEIGHT- Globals.SCREEN_HEIGHT/3-50);
+        TextField textField = new TextField();
+        textField.setText("Name of your character");
+        stackPane.getChildren().add(textField);
 
-        getChildren().addAll(namePane);
+        getChildren().addAll(stackPane);
     }
 
     private VBox setVbox(ClassTypes classType){

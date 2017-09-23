@@ -6,7 +6,8 @@ public enum Skills {
     WARRIOR("Basic Attack", 5 ,"Mortal Strike", 10, "Hundred Blades", 20, Images.BASIC_ATTACK.getImage(),
             Images.MORTAL_STRIKE.getImage(), Images.HUNDRED_BLADES.getImage()),
     MAGE("Basic Attack", 2, "Arcane Bolt", 15, "Arcane Cannon", 25, Images.BASIC_ATTACK.getImage(),
-            Images.ARCANE_BOLT.getImage(), Images.ARCANE_CANNON.getImage());
+            Images.ARCANE_BOLT.getImage(), Images.ARCANE_CANNON.getImage()),
+    PIRATE("Basic Attack", 0, "Prize Cut", 0,"Jackpot", 0, Images.BASIC_ATTACK.getImage(), null, null);
 
     private int skill01Dmg;
     private int skill02Dmg;
