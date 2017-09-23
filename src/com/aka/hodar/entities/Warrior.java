@@ -1,4 +1,4 @@
-package com.aka.hodar.entities;
+/*package com.aka.hodar.entities;
 
 import com.aka.hodar.ClassTypes;
 import com.aka.hodar.Images;
@@ -16,4 +16,4 @@ public class Warrior extends Entities implements EntitiesInterface{
         System.out.println("Warrior");
     }
 
-}
+}*/

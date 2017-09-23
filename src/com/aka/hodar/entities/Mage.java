@@ -1,4 +1,4 @@
-package com.aka.hodar.entities;
+/*package com.aka.hodar.entities;
 
 import com.aka.hodar.ClassTypes;
 import com.aka.hodar.Images;
@@ -12,8 +12,8 @@ public class Mage extends Entities {
 
     }
 
-    @Override
+    /*@Override
     public void printSelected() {
         System.out.println("Mage");
     }
-}
+}*/

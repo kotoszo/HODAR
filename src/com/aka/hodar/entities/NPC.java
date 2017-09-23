@@ -1,4 +1,4 @@
-package com.aka.hodar.entities;
+/*package com.aka.hodar.entities;
 
 import com.aka.hodar.Images;
 import javafx.scene.layout.Pane;
@@ -16,4 +16,4 @@ public class NPC extends Entities implements EntitiesInterface{
     public void printSelected() {
         System.out.println(getClass().getName());
     }
-}
+}*/
