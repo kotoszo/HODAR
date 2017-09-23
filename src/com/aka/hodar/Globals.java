@@ -15,39 +15,39 @@ public class Globals {
     public static final double SCREEN_HEIGHT = 720;
 
     public static final double PLAYER_X = 0;
-    //public static final double NPC_X = SCREEN_WIDTH-pirateImage.getWidth();
+    public static final double ENEMY_X = Globals.SCREEN_WIDTH-350;
     public static final double COMMON_Y = 275;
 
     public static final double SKILLBAR_X = 25;
     public static final double SKILLBAR_Y = 12;
 
-    public static ClassTypes chosenEntity;
+    public static boolean isMoving = true;
+    public static boolean isCharge;
     public static boolean isSelected;
     public static boolean isSkill;
     public static boolean[] isSkillList = new boolean[3];
 
     public static List<Entities> entitiesList;
-    public static Entities selectedEntity;
+    public static Entities playerEntity;
+    public static Entities enemyEntity;
+
+    public static ClassTypes enemyClass;
     public static Stage primaryStage;
     public static Tooltip skillInfo;
 
-    public static final Image pirateImage = new Image("bot.png");
-    public static final Image warriorImage = new Image("images/classes/warrior/warrior.png");
-    public static final Image mageImage = new Image("images/classes/mage/mage.png");
+    public static Random random = new Random();
 
-    /*
-    Should contain 3 different images, each of them is clickable.
-     */
     public static ImageView[] skillImages = new ImageView[3];
 
-    public static StackPane[] skillPaneList = new StackPane[3];//{skillPane_1, skillPane_2, skillPane_3};
+    public static StackPane[] skillPaneList = new StackPane[3];
+
+    public static GameLoop gameLoop;
 
     static {
         entitiesList = new LinkedList<>();
     }
 
-    // Images
-    public static Image healthBar = new Image("healthbar.png");
+    public static Image healthBar = Images.HEALTHBAR.getImage();
 
     public static void addEntitiy(Entities entity){
         entitiesList.add(entity);

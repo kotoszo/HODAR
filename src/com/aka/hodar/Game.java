@@ -1,46 +1,41 @@
 package com.aka.hodar;
 
 import com.aka.hodar.entities.Entities;
-import com.aka.hodar.entities.Mage;
-import com.aka.hodar.entities.NPC;
-import com.aka.hodar.entities.Warrior;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+
+import java.util.Random;
 
 public class Game extends Pane{
 
     public Game(ClassTypes selectedClass){
         setTableBackground(Images.BG_BASIC.getImage());
         addHero(selectedClass);
-
-        new NPC(this, Globals.SCREEN_WIDTH - Globals.pirateImage.getWidth(), Globals.COMMON_Y);
+        Globals.enemyClass =  ClassTypes.values()[Globals.random.nextInt(2)];
+        Globals.enemyEntity = new Entities(this, Globals.ENEMY_X, Globals.COMMON_Y);
 
         setSkillImages();
+        Globals.gameLoop = new GameLoop();
 
     }
     void setSkillImages(){
-        int index = 0; int skillWidth = 35;
+        int index = 0; double skillWidth = 0;
         for (StackPane stackPane: Globals.skillPaneList) {
             stackPane = new StackPane();
-            stackPane.setLayoutX(Globals.SCREEN_WIDTH/2-125+skillWidth);
-            stackPane.setLayoutY(Globals.SCREEN_HEIGHT-85);
+            stackPane.setLayoutX(Globals.SCREEN_WIDTH/2-(Images.BASIC_ATTACK.getImage().getWidth()*1.5)+skillWidth);
+            stackPane.setLayoutY(Globals.SCREEN_HEIGHT-Images.BASIC_ATTACK.getImage().getHeight());
             Globals.skillImages[index] = new ImageView();
             Globals.skillImages[index].setId(Integer.toString(index));
             stackPane.getChildren().add(Globals.skillImages[index]);
 
             getChildren().add(stackPane);
-            index++; skillWidth += 35;
+            index++; skillWidth += Images.BASIC_ATTACK.getImage().getWidth();
         }
     }
 
     void addHero(ClassTypes selectedClass){
-        switch (selectedClass){
-            case MAGE:
-                new Mage(this, Globals.PLAYER_X, Globals.COMMON_Y, selectedClass);break;
-            case WARRIOR:
-                new Warrior(this,  Globals.PLAYER_X, Globals.COMMON_Y, selectedClass);break;
-        }
+        new Entities(this, Globals.PLAYER_X, Globals.COMMON_Y, selectedClass);
     }
 
     void setTableBackground(Image tableBackground){
