@@ -7,10 +7,13 @@ import com.aka.hodar.entities.Player;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 public class Game extends Pane{
 
     public Game(ClassTypes selectedClass){
+        showUsedSkill();
         setTableBackground(Images.BG_BASIC.getImage());
         addHero(selectedClass);
         Globals.enemyClass =  ClassTypes.values()[Globals.random.nextInt(2)];
@@ -43,5 +46,24 @@ public class Game extends Pane{
         setBackground(new Background(new BackgroundImage(tableBackground,
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+    }
+
+    public void showUsedSkill(){
+        Globals.usedSkillPane = new StackPane();
+        Globals.usedSkillPane.setLayoutX(Globals.SCREEN_WIDTH/3);
+        Globals.usedSkillPane.setLayoutY(Globals.SCREEN_HEIGHT/4);
+        Globals.usedSkillText = new Text(Globals.usedSkillString);
+        Globals.usedSkillText.setFont(Font.font("ARIAL", 72));
+        Globals.usedSkillPane.getChildren().add(Globals.usedSkillText);
+        getChildren().add(Globals.usedSkillPane);
+    }
+
+    public void hideUsedSkill(){
+        System.out.println(getChildren());
+        getChildren().remove(Globals.usedSkillPane);
+        System.out.println(getChildren());
+        Globals.usedSkillPane = new StackPane();
+        Globals.usedSkillText = new Text();
+        Globals.usedSkillString = "";
     }
 }

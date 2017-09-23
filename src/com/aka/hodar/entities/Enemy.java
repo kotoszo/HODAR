@@ -15,6 +15,7 @@ public class Enemy extends Entities {
     void handleSelection() {
         if (Globals.isSelected){
             if (Globals.isSkill){
+                Globals.game.showUsedSkill();
                 Globals.gameLoop.start();
                 Globals.isCharge = true; Globals.isMoving = true;
                 setHealth(skillDamage);

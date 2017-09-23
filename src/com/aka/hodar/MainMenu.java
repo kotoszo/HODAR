@@ -78,8 +78,8 @@ public class MainMenu extends Pane {
         button.setLayoutY(Globals.SCREEN_HEIGHT- Globals.SCREEN_HEIGHT/3);
         button.setOnMouseClicked(event -> {
             if (selectedClass != null){
-                Game game = new Game(selectedClass);
-                Globals.primaryStage.setScene(new Scene(game, Globals.SCREEN_WIDTH, Globals.SCREEN_HEIGHT));
+                Globals.game = new Game(selectedClass);
+                Globals.primaryStage.setScene(new Scene(Globals.game, Globals.SCREEN_WIDTH, Globals.SCREEN_HEIGHT));
                 Globals.primaryStage.show();
             }
         });

@@ -13,6 +13,9 @@ public class Arena {
         int skillIndex = Globals.random.nextInt(3);
         Globals.playerEntity.setHealth(Globals.enemyEntity.getClassType().getSkillDmg(skillIndex));
         Globals.playerEntity.updateHealthBar();
+        Globals.usedSkillString = Globals.enemyEntity.getClassType().getSkillName(skillIndex);
+        Globals.game.showUsedSkill();
+        Globals.gameLoop.start();
     }
 
     public static void step(Entities entity){
@@ -31,9 +34,12 @@ public class Arena {
     }
 
     public static void stepBack(Entities entity){
+        //Globals.game.showUsedSkill();
         if (entity.equals(Globals.playerEntity)){
             if (entity.getBoundsInParent().getMinX() <= Globals.PLAYER_X){
                 handleTurn();
+                Globals.gameLoop.stop();
+                Globals.game.hideUsedSkill();
                 Arena.FIGHT();
             }
             x -= backward;
@@ -42,6 +48,7 @@ public class Arena {
             if (entity.getBoundsInParent().getMinX() == Globals.ENEMY_X){
                 handleTurn();
                 Globals.gameLoop.stop();
+                Globals.game.hideUsedSkill();
             }
             x += backward;
         }

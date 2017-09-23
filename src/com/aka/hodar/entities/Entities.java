@@ -10,7 +10,6 @@ import javafx.scene.text.Text;
 public abstract class Entities extends ImageView {
 
     int health;
-    int damage;
     StackPane stack;
     static int skillDamage;
     ClassTypes classType;
@@ -91,6 +90,7 @@ public abstract class Entities extends ImageView {
      void updateSkillBooleanList(String index){
         resetSkillStates();
         Globals.isSkillList[Integer.parseInt(index)] = true;
+        Globals.usedSkillString = Globals.playerEntity.getClassType().getSkillName(Integer.parseInt(index));
         Globals.isSkill = true;
     }
 

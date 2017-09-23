@@ -7,6 +7,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.*;
@@ -15,6 +16,8 @@ public class Globals {
 
     public static final double SCREEN_WIDTH = 1280;
     public static final double SCREEN_HEIGHT = 720;
+
+    public static Game game;
 
     public static final double PLAYER_X = 0;
     public static final double ENEMY_X = Globals.SCREEN_WIDTH-350;
@@ -36,6 +39,9 @@ public class Globals {
     public static ClassTypes enemyClass;
     public static Stage primaryStage;
     public static Tooltip skillInfo;
+    public static StackPane usedSkillPane;
+    public static Text usedSkillText;
+    public static String usedSkillString;
 
     public static Random random = new Random();
 
