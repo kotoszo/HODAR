@@ -6,7 +6,7 @@ public enum ClassTypes {
 
     WARRIOR("WARRIOR", 3, 1, 5, 250, "Warriors are good in close-combat.\n9/10 warriors recommend it!", Images.WARRIOR.getImage(), Skills.WARRIOR),
     MAGE("MAGE", 3, 5, 1, 150, "Mages are well known magic users.\nThey can deal big amount of damage.", Images.MAGE.getImage(), Skills.MAGE),
-    PIRATE("Pirate", 4, 1, 4, 200, null, Images.PIRATE.getImage(), null),
+    PIRATE("Pirate", 4, 1, 4, 200, "Gimme rum!\nYaaarrrrr!", Images.PIRATE.getImage(), Skills.PIRATE),
     DRUID("Druid", 4, 3, 2, 225, "Druids are friends of mother nature.\nasd", Images.DRUID.getImage(), null),
     PEASENT("Peasent", 4, 1, 4, 200, "Peasent are well known for nothing.\n But, they can achive something.", Images.PEASENT.getImage(), null),
     WIZARD("Wizard", 1, 7, 1, 175, "Wizards are rare, just like a bubblegum\n... in the middle ages.", Images.WIZARD.getImage(), null),
@@ -19,8 +19,8 @@ public enum ClassTypes {
     private String story;
     private int strength;
     private int intellect;
-    private String className;
     private Skills skills;
+    private String className;
 
     ClassTypes(String className, int agility ,int intellect,int strength,int health, String story, Image image, Skills skills) {
         this.story = story;
@@ -61,7 +61,7 @@ public enum ClassTypes {
             case 2:
                 dmg = skills.getSkill03Dmg();break;
         }
-        System.out.println(dmg);
+        //System.out.println(dmg);
         return dmg;
     }
     public String getSkillName(String index){
