@@ -62,7 +62,6 @@ public enum ClassTypes {
             case 2:
                 dmg = skills.getSkill03Dmg();break;
         }
-        //System.out.println(dmg);
         return dmg;
     }
     public String getSkillName(String index){

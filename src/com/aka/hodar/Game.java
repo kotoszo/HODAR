@@ -3,11 +3,15 @@ package com.aka.hodar;
 import com.aka.hodar.Animator.GameLoop;
 import com.aka.hodar.entities.ClassTypes;
 import com.aka.hodar.entities.Enemy;
+import com.aka.hodar.entities.Entities;
 import com.aka.hodar.entities.Player;
+import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class Game extends Pane{
@@ -49,19 +53,18 @@ public class Game extends Pane{
     }
 
     public void showUsedSkill(){
-        Globals.usedSkillPane = new StackPane();
-        Globals.usedSkillPane.setLayoutX(Globals.SCREEN_WIDTH/3);
-        Globals.usedSkillPane.setLayoutY(Globals.SCREEN_HEIGHT/4);
         Globals.usedSkillText = new Text(Globals.usedSkillString);
-        Globals.usedSkillText.setFont(Font.font("ARIAL", 72));
+        Globals.usedSkillText.setFont(Font.font("Century Gothic", FontWeight.BOLD,72));
+        Globals.usedSkillText.setFill(Color.RED); Globals.usedSkillText.setStroke(Color.BLACK);
+        Globals.usedSkillPane = new StackPane();
         Globals.usedSkillPane.getChildren().add(Globals.usedSkillText);
+        Globals.usedSkillPane.setAlignment(Globals.usedSkillText, Pos.CENTER);
+        Globals.usedSkillPane.setPrefWidth(Globals.SCREEN_WIDTH);
         getChildren().add(Globals.usedSkillPane);
     }
 
     public void hideUsedSkill(){
-        System.out.println(getChildren());
         getChildren().remove(Globals.usedSkillPane);
-        System.out.println(getChildren());
         Globals.usedSkillPane = new StackPane();
         Globals.usedSkillText = new Text();
         Globals.usedSkillString = "";

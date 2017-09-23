@@ -30,7 +30,10 @@ public class Globals {
     public static boolean isCharge;
     public static boolean isSelected;
     public static boolean isSkill;
+
     public static boolean[] isSkillList = new boolean[3];
+    public static ImageView[] skillImages = new ImageView[3];
+    public static StackPane[] skillPaneList = new StackPane[3];
 
     public static List<Entities> entitiesList;
     public static Entities playerEntity;
@@ -45,9 +48,6 @@ public class Globals {
 
     public static Random random = new Random();
 
-    public static ImageView[] skillImages = new ImageView[3];
-
-    public static StackPane[] skillPaneList = new StackPane[3];
 
     public static GameLoop gameLoop;
 
