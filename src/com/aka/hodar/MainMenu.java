@@ -14,10 +14,10 @@ public class MainMenu extends Pane {
 
     VBox vBox;
     ClassTypes selectedClass;
+    private static int index = 0;
+    private final static double TEXT_THINGS_WIDTH = 250;
     private final static double VBOX_X = 3*Globals.SCREEN_WIDTH/5+75;
     private final static double VBOX_Y = Globals.SCREEN_HEIGHT/3;
-    private final static double TEXT_THINGS_WIDTH = 250;
-    private static int index = 0;
     private static double xCoordinates = Globals.SCREEN_WIDTH/2-ClassTypes.values()[index].getImage().getWidth();
     private static double yCoordinates = Globals.SCREEN_HEIGHT/2-ClassTypes.values()[index].getImage().getWidth()/2;
 
@@ -57,7 +57,6 @@ public class MainMenu extends Pane {
     }
 
     private void selectionScreen(int index){
-        //System.out.println(index);
         StackPane imageStack = new StackPane();
 
         charImage.setScaleX(0.75);charImage.setScaleY(0.75);

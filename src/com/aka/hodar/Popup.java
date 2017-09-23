@@ -10,7 +10,7 @@ public class Popup {
         Globals.skillInfo = new Tooltip();
         Globals.skillInfo.setText(info);
         Node node = (Node) event.getSource();
-        Globals.skillInfo.show(node, Globals.primaryStage.getX()+Globals.SCREEN_WIDTH/2-140, Globals.primaryStage.getY()+Globals.SCREEN_HEIGHT-15);
+        Globals.skillInfo.show(node, x, y);
     }
 
     public static void hideSkillInfo(){ Globals.skillInfo.hide(); }
