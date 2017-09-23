@@ -1,16 +1,14 @@
 package com.aka.hodar.entities;
 
-import com.aka.hodar.ClassTypes;
-import com.aka.hodar.Globals;
-import com.aka.hodar.Popup;
-import javafx.scene.image.Image;
+import com.aka.hodar.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
 
-public abstract class Entities extends ImageView implements EntitiesInterface{
+public class Entities extends ImageView {
+    //public abstract class Entities extends ImageView implements EntitiesInterface{
 
     int health;
     int damage;
@@ -20,52 +18,43 @@ public abstract class Entities extends ImageView implements EntitiesInterface{
     protected Pane pane;
 
     // player entity
-    Entities(Pane pane, double x, double y, ClassTypes classType){
-        setThingsUp(pane, x, y, classType);
-        setOnMouseClicked(event ->  { handleSelection(classType.getClassName()); });
+    public Entities(Pane pane, double x, double y, ClassTypes selectedClass){
+        setThingsUp(pane, x, y, selectedClass);
+        setOnMouseClicked(event ->  { handlePlayerSelection(selectedClass.getClassName()); });
         Globals.addEntitiy(this);
     }
 
     // Enemy entity
-    Entities(Pane pane, double x, double y){
-        setThingsUp(pane, x, y, ClassTypes.MAGE);
-        setOnMouseClicked(event -> {
-            if (Globals.isSelected){
-                if (Globals.isSkill){
-                    setHealth(skillDamage);
-                    updateHealthBar();
-                    Globals.isSkill = false;
-                    if (getHealth() <= 0){ removeEntity(); }
-                }
-            } else {
-                System.out.println("First, select one of your characters");
-            }
-        });
+    public Entities(Pane pane, double x, double y){
+        setScaleX(-1);
+        setThingsUp(pane, x, y, Globals.enemyClass);
+        setOnMouseClicked(event -> { handleEnemySelection(); });
         Globals.addEntitiy(this);
     }
 
-    private void setThingsUp(Pane pane, double x, double y, ClassTypes classType){
+    private void setThingsUp(Pane pane, double x, double y, ClassTypes selectedClass){
         this.pane = pane;
-        this.classType = classType;
-        this.health = classType.getHealth();
-        stack = healthBar(x, y, Integer.toString(classType.getHealth()));
+        this.classType = selectedClass;
+        this.health = selectedClass.getHealth();
+        setImage(selectedClass.getImage());
+        stack = setHealthBar(x, y, Integer.toString(selectedClass.getHealth()));
         pane.getChildren().addAll(this, stack);
         setX(x);setY(y);
     }
 
     // self and friendly selection for heal/buff
-    private void handleSelection(String name){
-        if (Globals.chosenEntity == null){
+    private void handlePlayerSelection(String name){
+        if(Globals.playerEntity == null){
             setState(name);
             resetSkillStates();
             showSkillImages();
         } else {
-            if (name.equals(Globals.chosenEntity.getClassName())){
+            if (name.equals(Globals.playerEntity.getClassType().getClassName())){
                 setScaleX(1);setScaleY(1);
                 resetState();
             } else {
-                Globals.selectedEntity.setScaleX(1);Globals.selectedEntity.setScaleY(1);
-                Globals.selectedEntity.setImage(Globals.chosenEntity.getImage());
+                Globals.playerEntity.setScaleX(1);Globals.playerEntity.setScaleY(1);
+                Globals.playerEntity.setImage(Globals.playerEntity.getClassType().getImage());
                 resetState();
                 setState(name);
                 showSkillImages();
@@ -73,8 +62,23 @@ public abstract class Entities extends ImageView implements EntitiesInterface{
             Globals.isSkill = false;
         }
     }
+
+    private void handleEnemySelection(){
+        if (Globals.isSelected){
+            if (Globals.isSkill){
+                Globals.gameLoop.start();
+                Globals.isCharge = true; Globals.isMoving = true;
+                setHealth(skillDamage);
+                updateHealthBar();
+                Globals.isSkill = false;
+                if (getHealth() <= 0){ removeEntity(); }
+            }
+        } else {
+            System.out.println("First, select one of your characters");
+        }
+    }
     // init and update healthbar
-    private StackPane healthBar(double x, double y, String healthString){
+    private StackPane setHealthBar(double x, double y, String healthString){
         stack = new StackPane();
         stack.setLayoutX(x+Globals.SKILLBAR_X); stack.setLayoutY(y-Globals.SKILLBAR_Y);
         Text health = new Text(healthString);
@@ -87,26 +91,23 @@ public abstract class Entities extends ImageView implements EntitiesInterface{
     // sets the state
     private void setState(String name){
         Globals.isSelected = true;
-        Globals.selectedEntity = this;
-        Globals.chosenEntity = Globals.selectedEntity.getClassType();
+        Globals.playerEntity = this;
         setScaleX(1.25);setScaleY(1.25);
         setSkillImages();
     }
 
     //resets the state
     private void resetState(){
-        Globals.chosenEntity = null;
         Globals.isSelected = false;
-        Globals.selectedEntity = null;
-        Globals.chosenEntity = null;
+        Globals.playerEntity = null;
         resetSkillImages();
         resetSkillStates();
     }
 
     // removes the healthbar node (stackpane) and creates the new one
-    private void updateHealthBar(){
+    public void updateHealthBar(){
         pane.getChildren().remove(pane.getChildren().get(pane.getChildren().indexOf(stack)));
-        pane.getChildren().add(healthBar(getX(), getY(), Integer.toString(getHealth())));
+        pane.getChildren().add(setHealthBar(getX(), getY(), Integer.toString(getHealth())));
     }
 
     private void setSkillImages(){
@@ -118,12 +119,12 @@ public abstract class Entities extends ImageView implements EntitiesInterface{
 
     private void resetSkillImages(){
         for (ImageView imageV: Globals.skillImages) {
-            imageV.setImage(new Image("empty.png"));
+            imageV.setImage(Images.EMPTY.getImage());
         }
     }
 
     private void showSkillImages(){
-        for (ImageView imageV: Globals.skillImages) { // should do everything from one method and with the ID can decide what where how etc
+        for (ImageView imageV: Globals.skillImages) {
             imageV.setOnMouseClicked(event -> { updateSkillBooleanList(imageV.getId()); setSkill(imageV.getId()); });
             imageV.setOnMouseEntered(event -> { Popup.showSkillInfo(event, classType.getSkillName(imageV.getId()),
                     Globals.SCREEN_WIDTH, Globals.SCREEN_HEIGHT-6);});
@@ -146,10 +147,10 @@ public abstract class Entities extends ImageView implements EntitiesInterface{
     private void removeEntity(){
         Globals.removeEntity(this);
         pane.getChildren().remove(pane.getChildren().get(pane.getChildren().indexOf(stack)));
-        setImage(new Image("empty.png"));
+        setImage(Images.EMPTY.getImage());
     }
 
-    private int getHealth() { return health; }
+    public int getHealth() { return health; }
     public void setHealth(int damage) { this.health -= damage; }
 
     public int getDamage() { return damage; }
