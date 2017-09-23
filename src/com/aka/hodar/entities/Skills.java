@@ -1,5 +1,6 @@
-package com.aka.hodar;
+package com.aka.hodar.entities;
 
+import com.aka.hodar.Images;
 import javafx.scene.image.Image;
 
 public enum Skills {

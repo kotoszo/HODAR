@@ -1,5 +1,7 @@
 package com.aka.hodar;
 
+import com.aka.hodar.Animator.GameLoop;
+import com.aka.hodar.entities.ClassTypes;
 import com.aka.hodar.entities.Enemy;
 import com.aka.hodar.entities.Player;
 import javafx.scene.image.Image;

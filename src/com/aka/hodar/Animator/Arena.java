@@ -1,5 +1,6 @@
-package com.aka.hodar;
+package com.aka.hodar.Animator;
 
+import com.aka.hodar.Globals;
 import com.aka.hodar.entities.Entities;
 
 public class Arena {

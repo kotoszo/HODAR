@@ -8,7 +8,6 @@ import javafx.scene.text.Text;
 
 
 public abstract class Entities extends ImageView {
-    //public abstract class Entities extends ImageView implements EntitiesInterface{
 
     int health;
     int damage;

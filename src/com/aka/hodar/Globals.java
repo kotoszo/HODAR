@@ -1,5 +1,7 @@
 package com.aka.hodar;
 
+import com.aka.hodar.Animator.GameLoop;
+import com.aka.hodar.entities.ClassTypes;
 import com.aka.hodar.entities.Entities;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;

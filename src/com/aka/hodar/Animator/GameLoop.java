@@ -1,5 +1,6 @@
-package com.aka.hodar;
+package com.aka.hodar.Animator;
 
+import com.aka.hodar.Globals;
 import javafx.animation.AnimationTimer;
 
 public class GameLoop extends AnimationTimer {

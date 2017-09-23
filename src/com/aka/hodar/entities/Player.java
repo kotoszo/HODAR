@@ -1,6 +1,5 @@
 package com.aka.hodar.entities;
 
-import com.aka.hodar.ClassTypes;
 import com.aka.hodar.Globals;
 import javafx.scene.layout.Pane;
 
