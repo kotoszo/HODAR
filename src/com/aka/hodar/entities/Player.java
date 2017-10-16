@@ -9,7 +9,7 @@ public class Player extends Entities {
     public Player(Pane pane, double x, double y, ClassTypes selectedClass){
         super(pane, x, y, selectedClass);
         setOnMouseClicked(event ->  { this.name=selectedClass.getClassName(); handleSelection(); });
-        Globals.addEntitiy(this);
+        Globals.addEntity(this);
     }
 
     @Override

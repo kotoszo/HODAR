@@ -46,6 +46,9 @@ public class Globals {
     public static Text usedSkillText;
     public static String usedSkillString;
 
+    public static double skillInfo_X;
+    public static double getSkillInfo_Y;
+
     public static Random random = new Random();
 
 
@@ -57,7 +60,7 @@ public class Globals {
 
     public static Image healthBar = Images.HEALTHBAR.getImage();
 
-    public static void addEntitiy(Entities entity){
+    public static void addEntity(Entities entity){
         entitiesList.add(entity);
     }
     public static void removeEntity(Entities entity){ entitiesList.remove(entity); }

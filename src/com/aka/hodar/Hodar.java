@@ -11,6 +11,7 @@ public class Hodar extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
         Globals.primaryStage = primaryStage;
+        Globals.primaryStage.setResizable(false);
         MainMenu game = new MainMenu();
         Globals.primaryStage.setScene(new Scene(game, Globals.SCREEN_WIDTH, Globals.SCREEN_HEIGHT));
 

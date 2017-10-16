@@ -17,7 +17,7 @@ public abstract class Entities extends ImageView {
 
     public Entities(Pane pane, double x, double y, ClassTypes classToSet){
         setThingsUp(pane, x, y, classToSet);
-        Globals.addEntitiy(this);
+        Globals.addEntity(this);
     }
 
     void setThingsUp(Pane pane, double x, double y, ClassTypes selectedClass){
@@ -78,7 +78,8 @@ public abstract class Entities extends ImageView {
         for (ImageView imageV: Globals.skillImages) {
             imageV.setOnMouseClicked(event -> { updateSkillBooleanList(imageV.getId()); setSkill(imageV.getId()); });
             imageV.setOnMouseEntered(event -> { Popup.showSkillInfo(event, classType.getSkillName(imageV.getId()),
-                    imageV.getParent().getLayoutX()+imageV.getImage().getWidth(), Globals.SCREEN_HEIGHT-imageV.getImage().getHeight()); });
+                    Globals.skillInfo_X, Globals.SCREEN_HEIGHT+imageV.getImage().getHeight()); System.out.println(Globals.skillInfo_X); });
+                    //Globals.SCREEN_HEIGHT-imageV.getImage().getHeight()); });
             imageV.setOnMouseExited(event -> { Popup.hideSkillInfo();});
         } }
 

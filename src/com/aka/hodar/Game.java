@@ -31,11 +31,15 @@ public class Game extends Pane{
         int index = 0; double skillWidth = 0;
         for (StackPane stackPane: Globals.skillPaneList) {
             stackPane = new StackPane();
-            stackPane.setLayoutX(Globals.SCREEN_WIDTH/2-(Images.BASIC_ATTACK.getImage().getWidth()*1.5)+skillWidth);
-            stackPane.setLayoutY(Globals.SCREEN_HEIGHT-Images.BASIC_ATTACK.getImage().getHeight());
+            Globals.skillInfo_X = Globals.SCREEN_WIDTH/2-(Images.BASIC_ATTACK.getImage().getWidth()*1.5)+skillWidth;
+            stackPane.setLayoutX(Globals.skillInfo_X);
+            System.out.println(Globals.skillInfo_X);
+            Globals.getSkillInfo_Y = Globals.SCREEN_HEIGHT-Images.BASIC_ATTACK.getImage().getHeight();
+            stackPane.setLayoutY(Globals.getSkillInfo_Y);
             Globals.skillImages[index] = new ImageView();
             Globals.skillImages[index].setId(Integer.toString(index));
             stackPane.getChildren().add(Globals.skillImages[index]);
+            // here should come all the skill info box
 
             getChildren().add(stackPane);
             index++; skillWidth += Images.BASIC_ATTACK.getImage().getWidth();
